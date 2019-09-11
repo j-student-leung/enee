@@ -1,0 +1,82 @@
+#include <stdlib.h>
+/*three loops*/
+void transpose(int m, int n, int A[10][10], int B[10][10])
+{
+        int x, y;
+        for(x=0; x<n; x++)
+        {
+                for(y=0; y<m; y++)
+                {
+                        B[x][y]=A[y][x];
+                }
+        }
+}
+void p(int m, int n, int A[10][10], int B[10][10], int P[10][10])
+{
+        int x, y, z, a, product=0;
+        for(x=0; x<m; x++)
+        {
+                for(y=0; y<m; y++)
+                {
+                        for(z=0; z<n; z++)
+                        {
+                                product+=A[y][z]*B[z][y];
+                        }
+                        P[x][y]=product;
+                        product=0;
+                }
+        }
+}
+int main()
+{
+        int A[10][10], x=0, y=0, m, n, a, b, c, d, e, f;
+        static int B[10][10], P[10][10];
+        printf("Number of rows: ");
+        scanf("%d", &m);
+        printf("Number of columns: ");
+        scanf("%d", &n);
+        if(m>0 && m<=10)
+        {
+                if(n>0 && n<=10)
+                {
+                        for(x=0; x<m; x++)
+                        {
+                                for (y=0; y<n; y++)
+                                {
+                                        printf("Row %d\n Enter Value: ", x+1);
+                                        scanf("%d", &A[x][y]);
+                                }
+                        }
+                        printf("Matrix A:\n");
+                        for(a=0; a<m; a++)
+                        {
+                                for(b=0; b<n; b++)
+                                {
+                                        printf("%d\t", A[a][b]);
+                                }
+                                printf("\n");
+                        }
+                        transpose(m, n, A, B);
+                        printf("Matrix B:\n");
+                        for(c=0; c<n; c++)
+                        {
+                                for(d=0; d<m; d++)
+                                {
+                                        printf("%d\t", B[c][d]);
+                                }
+                                printf("\n");
+                        }
+                        p(m, n, A, B, P);
+                        printf("Matrix P: \n");
+                        for(e=0; e<m; e++)
+                        {
+                                for(f=0; f<m; f++)
+                                {
+                                        printf("%d\t", P[e][f]);
+                                }
+                                printf("\n");
+                        }
+                }
+        }
+        return 0;
+}
